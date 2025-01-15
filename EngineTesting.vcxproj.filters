@@ -17,4 +17,9 @@
       <UniqueIdentifier>{e09982a3-a95e-4648-b699-1921a481363a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main\main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>
