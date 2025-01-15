@@ -7,27 +7,34 @@
 
 class InternalCombustionEngine : public EngineBase {
 public:
-	InternalCombustionEngine(double I,
+	InternalCombustionEngine(double inertia,
 		const std::vector<std::pair<double, double>>& torqueCurve,
 		double T_overheat,
 		double HM,
 		double HV,
-		double C);
+		double C,
+		double ambientTemperature);
 
-	double simulateOverheatTime(double ambientTemperature) override;
+	double getTemperature() const override;
+	double getAngularVelocity() const override;
 
-private:
-	double inertia;
-	std::vector<std::pair<double, double>> torqueCurve;
-	double T_overheat;
-	double HM;
-	double HV;
-	double C;
+	void run(double timeStep) override;
 
-	double temperature;
-	double angularVelocity;
+private:                                                // TODO: Remove after works
+	double inertia;                                     // Момент инерции двигателя
+	std::vector<std::pair<double, double>> torqueCurve; // Кусочно-линейная зависимость крутящего момента
+	double T_overheat;                                  // Температура перегрева
+	double HM;                                          // Коэффициент нагрева от крутящего момента
+	double HV;                                          // Коэффициент нагрева от скорости вращения
+	double C;                                           // Коэффициент охлаждения
+	double ambientTemperature;                          // Температура окружающей среды
 
-	double calculateTorque(double velocity) const;
+	double temperature;                                 // Текущая температура двигателя
+	double angularVelocity;                             // Текущая скорость вращения коленвала
+
+	double calculateTorque(double velocity) const;      // Вычисляет крутящий момент
+	void updateTemperature(double timeStep);
+	void updateAngularVelocity(double timeStep);
 };
 
 #endif // INTERNAL_COMBUSTION_ENGINE_H
