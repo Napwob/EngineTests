@@ -18,12 +18,13 @@ public:
 	double getTemperature() const override;
 	double getAngularVelocity() const override;
 
+	// Симулирует работу двигателя в течение одного промежутка времени
 	void run(double timeStep) override;
 
-private:                                                // TODO: Remove after works
+private:
 	double inertia;                                     // Момент инерции двигателя
-	std::vector<std::pair<double, double>> torqueCurve; // Кусочно-линейная зависимость крутящего момента
-	double T_overheat;                                  // Температура перегрева
+	std::vector<std::pair<double, double>> torqueCurve; // Кусочно-линейная зависимость от скорости
+	double T_overheat;
 	double HM;                                          // Коэффициент нагрева от крутящего момента
 	double HV;                                          // Коэффициент нагрева от скорости вращения
 	double C;                                           // Коэффициент охлаждения
@@ -31,10 +32,11 @@ private:                                                // TODO: Remove after wo
 
 	double temperature;                                 // Текущая температура двигателя
 	double angularVelocity;                             // Текущая скорость вращения коленвала
+	double torque;                                      // Крутящий момент (рассчитывается один раз за шаг)
 
 	double calculateTorque(double velocity) const;      // Вычисляет крутящий момент
-	void updateTemperature(double timeStep);
-	void updateAngularVelocity(double timeStep);
+	void updateTemperature(double timeStep);            // Обновляет температуру
+	void updateAngularVelocity(double timeStep);        // Обновляет скорость вращения
 };
 
 #endif // INTERNAL_COMBUSTION_ENGINE_H
