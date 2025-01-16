@@ -21,10 +21,12 @@
   <ItemGroup>
     <ClCompile Include="src\engines\ICE\InternalCombustionEngine.cpp" />
     <ClCompile Include="src\main\main.cpp" />
+    <ClCompile Include="src\stand\TestStand.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engines\ICE\InternalCombustionEngine.h" />
     <ClInclude Include="src\engines\EngineBase.h" />
+    <ClInclude Include="src\stand\TestStand.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

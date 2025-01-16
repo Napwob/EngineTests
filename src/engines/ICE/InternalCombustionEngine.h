@@ -9,7 +9,6 @@ class InternalCombustionEngine : public EngineBase {
 public:
 	InternalCombustionEngine(double inertia,
 		const std::vector<std::pair<double, double>>& torqueCurve,
-		double T_overheat,
 		double HM,
 		double HV,
 		double C,
@@ -24,7 +23,6 @@ public:
 private:
 	double inertia;                                     // Момент инерции двигателя
 	std::vector<std::pair<double, double>> torqueCurve; // Кусочно-линейная зависимость от скорости
-	double T_overheat;
 	double HM;                                          // Коэффициент нагрева от крутящего момента
 	double HV;                                          // Коэффициент нагрева от скорости вращения
 	double C;                                           // Коэффициент охлаждения

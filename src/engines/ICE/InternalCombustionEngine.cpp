@@ -4,14 +4,12 @@
 
 InternalCombustionEngine::InternalCombustionEngine(double I,
 	const std::vector<std::pair<double, double>>& torqueCurve,
-	double T_overheat,
 	double HM,
 	double HV,
 	double C,
 	double ambientTemperature)
 	: inertia(I),
 	torqueCurve(torqueCurve),
-	T_overheat(T_overheat),
 	HM(HM),
 	HV(HV),
 	C(C),

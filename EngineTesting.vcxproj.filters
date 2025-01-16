@@ -24,12 +24,18 @@
     <ClCompile Include="src\engines\ICE\InternalCombustionEngine.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="src\stand\TestStand.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engines\EngineBase.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="src\engines\ICE\InternalCombustionEngine.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\stand\TestStand.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

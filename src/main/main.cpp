@@ -3,6 +3,7 @@
 #include <iomanip>
 
 #include "engines/EngineBase.h"
+#include "stand/TestStand.h"
 #include "engines/ICE/InternalCombustionEngine.h"
 
 using namespace std;
@@ -17,24 +18,14 @@ int main()
 	double C = 0.1;
 	double ambientTemperature = 25.0;
 
-	InternalCombustionEngine* engine = new InternalCombustionEngine(inertia, torqueCurve, T_overheat, HM, HV, C, ambientTemperature);
+	unique_ptr<EngineBase> engine = make_unique<InternalCombustionEngine>(inertia, torqueCurve, HM, HV, C, ambientTemperature);
+
+	TestStand testStand(move(engine));
 
 	double timeStep = 0.01;
-	double timer = 0.0;
+	double timeToOverheat = testStand.runTest(timeStep, T_overheat);
 
-	while (engine->getTemperature() < 110) {
-		engine->run(timeStep);
-		timer += timeStep;
-
-		if ((timer - floor(timer)) < timeStep || timer < 1)
-		{
-			cout << "Time: " << timer << " ";
-			cout << "Temperature: " << engine->getTemperature() << " ";
-			cout << "Angular Velocity: " << engine->getAngularVelocity() << std::endl;
-		}	
-	}
-
-	delete engine;
+	std::cout << "Test completed. Time to overheat: " << timeToOverheat << " seconds.\n";
 
 	return 0;
 }
