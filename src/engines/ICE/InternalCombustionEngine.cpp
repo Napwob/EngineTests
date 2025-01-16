@@ -1,6 +1,7 @@
 #include "InternalCombustionEngine.h"
 #include <cmath>
 #include <stdexcept>
+#include <iostream>
 
 InternalCombustionEngine::InternalCombustionEngine(double I,
 	const std::vector<std::pair<double, double>>& torqueCurve,
@@ -13,7 +14,7 @@ InternalCombustionEngine::InternalCombustionEngine(double I,
 	HM(HM),
 	HV(HV),
 	C(C),
-	ambientTemperature(ambientTemperature),
+	ambientTemperature(0),
 	temperature(ambientTemperature),
 	angularVelocity(0),
 	torque(0) {
@@ -25,6 +26,11 @@ double InternalCombustionEngine::getTemperature() const {
 
 double InternalCombustionEngine::getAngularVelocity() const {
 	return angularVelocity;
+}
+
+void InternalCombustionEngine::setAmbientTemperature(double AmbientTemperature) {
+	ambientTemperature = AmbientTemperature;
+	temperature = ambientTemperature;
 }
 
 void InternalCombustionEngine::run(double timeStep) {

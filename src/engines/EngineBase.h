@@ -9,6 +9,8 @@ public:
 
 	virtual double getAngularVelocity() const = 0;
 
+	virtual void setAmbientTemperature(double AmbientTemperature) = 0;
+
 	virtual void run(double timeStep) = 0;
 };
 

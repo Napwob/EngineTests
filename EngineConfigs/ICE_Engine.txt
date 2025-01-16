@@ -4,7 +4,6 @@ T_overheat=110
 HM=0.01
 HV=0.0001
 C=0.1
-ambientTemperature=25
 
 torque[0]=0 20
 torque[1]=75 75

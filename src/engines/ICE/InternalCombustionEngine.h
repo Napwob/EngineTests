@@ -21,6 +21,8 @@ public:
 	double getTemperature() const override;
 	// Получить текущее значение скорости вращения
 	double getAngularVelocity() const override;
+	// Установить значение температуры окружающей среды
+	void setAmbientTemperature(double AmbientTemperature) override;
 
 	// Симулирует работу двигателя в течение временного шага
 	void run(double timeStep) override;
@@ -40,9 +42,9 @@ private:
 	// Вычисляет крутящий момент
 	double calculateTorque(double velocity) const;
 	// Обновляет температуру
-	void updateTemperature(double timeStep);    
+	void updateTemperature(double timeStep);
 	// Обновляет скорость вращения
-	void updateAngularVelocity(double timeStep);     
+	void updateAngularVelocity(double timeStep);
 };
 
 #endif // INTERNAL_COMBUSTION_ENGINE_H

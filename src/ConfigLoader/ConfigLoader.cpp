@@ -46,9 +46,6 @@ EngineConfig loadConfig(const std::string& filepath) {
 					valStream >> speed >> torque;
 					config.torqueCurve[index] = { speed, torque };
 				}
-				else if (key == "ambientTemperature") {
-					config.ambientTemperature = std::stod(value);
-				}
 			}
 		}
 	}
