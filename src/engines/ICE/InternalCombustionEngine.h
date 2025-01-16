@@ -1,10 +1,13 @@
 #ifndef INTERNAL_COMBUSTION_ENGINE_H
 #define INTERNAL_COMBUSTION_ENGINE_H
 
-#include "engines/EngineBase.h"
+#include "Engines/EngineBase.h"
 #include <vector>
 #include <utility>
 
+/// <summary>
+/// Двигатель внутреннего сгорания
+/// </summary>
 class InternalCombustionEngine : public EngineBase {
 public:
 	InternalCombustionEngine(double inertia,
@@ -14,10 +17,12 @@ public:
 		double C,
 		double ambientTemperature);
 
+	// Получить текущее значение температуры
 	double getTemperature() const override;
+	// Получить текущее значение скорости вращения
 	double getAngularVelocity() const override;
 
-	// Симулирует работу двигателя в течение одного промежутка времени
+	// Симулирует работу двигателя в течение временного шага
 	void run(double timeStep) override;
 
 private:
@@ -32,9 +37,12 @@ private:
 	double angularVelocity;                             // Текущая скорость вращения коленвала
 	double torque;                                      // Крутящий момент (рассчитывается один раз за шаг)
 
-	double calculateTorque(double velocity) const;      // Вычисляет крутящий момент
-	void updateTemperature(double timeStep);            // Обновляет температуру
-	void updateAngularVelocity(double timeStep);        // Обновляет скорость вращения
+	// Вычисляет крутящий момент
+	double calculateTorque(double velocity) const;
+	// Обновляет температуру
+	void updateTemperature(double timeStep);    
+	// Обновляет скорость вращения
+	void updateAngularVelocity(double timeStep);     
 };
 
 #endif // INTERNAL_COMBUSTION_ENGINE_H

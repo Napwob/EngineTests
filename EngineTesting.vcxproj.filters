@@ -21,21 +21,27 @@
     <ClCompile Include="src\main\main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\engines\ICE\InternalCombustionEngine.cpp">
+    <ClCompile Include="src\Engines\ICE\InternalCombustionEngine.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\stand\TestStand.cpp">
+    <ClCompile Include="src\TestStand\TestStand.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConfigLoader\ConfigLoader.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\engines\EngineBase.h">
+    <ClInclude Include="src\Engines\EngineBase.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\engines\ICE\InternalCombustionEngine.h">
+    <ClInclude Include="src\Engines\ICE\InternalCombustionEngine.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\stand\TestStand.h">
+    <ClInclude Include="src\TestStand\TestStand.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConfigLoader\ConfigLoader.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

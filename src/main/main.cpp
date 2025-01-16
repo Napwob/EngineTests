@@ -2,30 +2,38 @@
 #include <memory> 
 #include <iomanip>
 
-#include "engines/EngineBase.h"
-#include "stand/TestStand.h"
-#include "engines/ICE/InternalCombustionEngine.h"
-
-using namespace std;
+#include "ConfigLoader/ConfigLoader.h"
+#include "Engines/EngineBase.h"
+#include "TestStand/TestStand.h"
+#include "Engines/ICE/InternalCombustionEngine.h"
 
 int main()
 {
-	double inertia = 0.1;
-	std::vector<std::pair<double, double>> torqueCurve = { {0, 20}, {75, 75}, {150, 100}, {200, 105}, {250, 75}, {300, 0} };
-	double T_overheat = 110;
-	double HM = 0.01;
-	double HV = 0.0001;
-	double C = 0.1;
-	double ambientTemperature = 25.0;
+	std::string filepath;
+	std::cout << "Enter configuration filepath: ";
+	std::cin >> filepath;
 
-	unique_ptr<EngineBase> engine = make_unique<InternalCombustionEngine>(inertia, torqueCurve, HM, HV, C, ambientTemperature);
+	try
+	{
+		EngineConfig config = loadConfig(filepath);
 
-	TestStand testStand(move(engine));
+		std::unique_ptr<EngineBase> engine;
+		if (config.engineType == "ICE")
+			engine = std::make_unique<InternalCombustionEngine>(config.inertia, config.torqueCurve, config.HM, config.HV, config.C, config.ambientTemperature);
+		else
+			throw std::runtime_error("Unsupported engine type: " + config.engineType);
 
-	double timeStep = 0.01;
-	double timeToOverheat = testStand.runTest(timeStep, T_overheat);
+		TestStand testStand(std::move(engine));
 
-	std::cout << "Test completed. Time to overheat: " << timeToOverheat << " seconds.\n";
+		double timeStep = 0.01;
+		double timeToOverheat = testStand.runTest(timeStep, config.T_overheat);
+
+		std::cout << "Test completed. Time to overheat: " << timeToOverheat << " seconds.\n";
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << "Error: " << e.what() << "\n";
+	}
 
 	return 0;
 }
