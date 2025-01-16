@@ -8,18 +8,24 @@ double TestStand::runTest(double timeStep, double T_overheat) {
 
 	double previousTemperature = -1;
 
-	while (engine->getTemperature() < T_overheat) {
+	while (true) {
 		previousTemperature = engine->getTemperature();
 		engine->run(timeStep);
 		timeElapsed += timeStep;
 
-		if (previousTemperature >= engine->getTemperature())
+		if (engine->getTemperature() >= T_overheat)
+		{
+			std::cout << "The engine overheated.\n";
+			break;
+		}
+
+		if (previousTemperature >= engine->getTemperature() && previousTemperature < T_overheat && engine->getTemperature() < T_overheat)
 		{
 			std::cout << "The ambient temperature does not allow the engine to overheat.\n";
-			return timeElapsed;
+			std::cout << "Stable temperature: " << engine->getTemperature() <<"\n";
+			break;
 		}
 	}
-	std::cout << "The engine overheated.\n";
 	return timeElapsed;
 }
 

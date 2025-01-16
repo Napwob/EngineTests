@@ -9,7 +9,7 @@
 
 int main()
 {
-	std::string filepath; // "EngineTests\\EngineConfigs\\ICE_Engine.txt";
+	std::string filepath; // "EngineTests\EngineConfigs\ICE_Engine.txt";
 	std::cout << "Enter configuration filepath: ";
 	std::cin >> filepath;
 
